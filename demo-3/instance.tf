@@ -3,6 +3,8 @@ resource "aws_instance" "example" {
   instance_type = "t2.micro"
   provisioner "local-exec" {
     command = "echo ${aws_instance.example.private_ip} >> private_ips.txt"
+    interpreter=["bash", "-c"]
+    working_dir=path.module
   }
 }
 
